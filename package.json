@@ -1,0 +1,8 @@
+{
+  "name": "awesome-ai-workflows-that-work",
+  "private": true,
+  "scripts": {
+    "lint": "npx awesome-lint README.md",
+    "lint:workflows": "node scripts/check-workflows.mjs"
+  }
+}

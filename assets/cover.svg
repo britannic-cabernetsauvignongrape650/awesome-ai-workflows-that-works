@@ -1,0 +1,189 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 640" width="1280" height="640">
+  <defs>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feFlood flood-color="#00ff88" flood-opacity="0.6"/>
+      <feComposite in2="blur" operator="in"/>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="glow-soft" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="15"/>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="static-noise">
+      <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="4" seed="7"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer>
+        <feFuncA type="discrete" tableValues="0 0.03"/>
+      </feComponentTransfer>
+      <feBlend in="SourceGraphic" mode="screen"/>
+    </filter>
+    <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#00ff88" stroke-width="0.3" opacity="0.06"/>
+    </pattern>
+    <pattern id="scanline" width="4" height="4" patternUnits="userSpaceOnUse">
+      <rect width="4" height="2" fill="#000" opacity="0.08"/>
+    </pattern>
+    <radialGradient id="vignette" cx="50%" cy="50%" r="70%">
+      <stop offset="0%" stop-color="#0a0a0a" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0.7"/>
+    </radialGradient>
+    <radialGradient id="crt" cx="50%" cy="45%" r="55%">
+      <stop offset="0%" stop-color="#00ff88" stop-opacity="0.025"/>
+      <stop offset="100%" stop-color="#00ff88" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1280" height="640" fill="#050505"/>
+  <rect width="1280" height="640" fill="url(#crt)"/>
+  <rect width="1280" height="640" fill="url(#grid)"/>
+  <rect width="1280" height="640" fill="url(#vignette)"/>
+  <rect width="1280" height="640" fill="url(#scanline)" opacity="0.4"/>
+  <rect width="1280" height="640" filter="url(#static-noise)" opacity="0.4"/>
+
+  <!-- BIOS header -->
+  <text x="50" y="35" font-family="'JetBrains Mono', 'Cascadia Code', 'Fira Code', 'Consolas', monospace" font-size="10" fill="#00ff88" opacity="0.3" letter-spacing="1">
+    AWAI-BIOS (C) Awesome AI Workflows Foundation
+  </text>
+  <text x="50" y="52" font-family="'JetBrains Mono', 'Cascadia Code', 'Fira Code', 'Consolas', monospace" font-size="10" fill="#00ff88" opacity="0.2" letter-spacing="1">
+    Checking workflows .......... OK | License : CC0 1.0 | Focus : copy-paste tested
+  </text>
+  <line x1="50" y1="62" x2="1230" y2="62" stroke="#00ff88" stroke-width="0.5" opacity="0.12"/>
+
+  <!-- Hex addresses left margin -->
+  <text font-family="'JetBrains Mono', monospace" font-size="8" fill="#00ff88" opacity="0.1">
+    <tspan x="12" y="95">0x0000</tspan>
+    <tspan x="12" y="155">0x00A0</tspan>
+    <tspan x="12" y="215">0x0140</tspan>
+    <tspan x="12" y="275">0x01E0</tspan>
+    <tspan x="12" y="335">0x0280</tspan>
+    <tspan x="12" y="395">0x0320</tspan>
+    <tspan x="12" y="455">0x03C0</tspan>
+    <tspan x="12" y="515">0x0460</tspan>
+    <tspan x="12" y="575">0x0500</tspan>
+  </text>
+
+  <!-- Large curly braces decorative -->
+  <text x="55" y="340" font-family="'JetBrains Mono', monospace" font-size="70" fill="#00ff88" opacity="0.04">{</text>
+  <text x="1200" y="340" font-family="'JetBrains Mono', monospace" font-size="70" fill="#00ff88" opacity="0.04">}</text>
+
+  <!-- ====== ASCII ART TITLE ====== -->
+  <text font-family="'JetBrains Mono', 'Cascadia Code', 'Fira Code', 'Consolas', monospace" font-size="14.5" fill="#00ff88" filter="url(#glow)" opacity="0.95">
+    <tspan x="170" dy="108"> ___ __      __ ___  ___  ___  __  __ ___     _   ___</tspan>
+    <tspan x="170" dy="19">/ _ \\ \    / /| __|/ __|/ _ \|  \/  | __|   /_\ |_ _|</tspan>
+    <tspan x="170" dy="19">|(_| |\ \/\/ / | _| \__ \ (_) | |\/| | _|   / _ \ | |</tspan>
+    <tspan x="170" dy="19">\__|_| \_/\_/  |___||___/\___/|_|  |_|___| /_/ \_\___|</tspan>
+  </text>
+
+  <text font-family="'JetBrains Mono', 'Cascadia Code', 'Fira Code', 'Consolas', monospace" font-size="14.5" fill="#00ff88" filter="url(#glow)">
+    <tspan x="260" dy="200">__      _____  ___ _  _____ _    _____      _____</tspan>
+    <tspan x="260" dy="19">\ \    / / _ \| _ \ |/ / __| |  / _ \ \    / / __|</tspan>
+    <tspan x="260" dy="19"> \ \/\/ / (_) |   / ' &lt;| _|| |_| (_) \ \/\/ /\__ \</tspan>
+    <tspan x="260" dy="19">  \_/\_/ \___/|_|_\_|\_\_| |____\___/ \_/\_/ |___/</tspan>
+  </text>
+
+  <!-- "THAT WORK" -->
+  <text x="640" y="305" text-anchor="middle" font-family="'JetBrains Mono', 'Consolas', monospace" font-size="44" font-weight="900" fill="#00ff88" filter="url(#glow)" letter-spacing="8">
+    THAT WORK
+  </text>
+
+  <!-- Blinking cursor next to title -->
+  <rect x="910" y="283" width="20" height="28" fill="#00ff88" opacity="0.7">
+    <animate attributeName="opacity" values="0.7;0;0.7" dur="1s" repeatCount="indefinite"/>
+  </rect>
+
+  <!-- Separator -->
+  <text x="640" y="335" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" fill="#00ff88" opacity="0.2" letter-spacing="4">
+    ════════════════════════════════════════════════════════
+  </text>
+
+  <!-- Tagline -->
+  <text x="640" y="365" text-anchor="middle" font-family="'JetBrains Mono', 'Consolas', monospace" font-size="14" fill="#00aa55" opacity="0.7" letter-spacing="3">
+    COPY-PASTE TESTED PLAYBOOKS FOR REAL AUTOMATION
+  </text>
+
+  <!-- ====== TERMINAL SESSION ====== -->
+  <text font-family="'JetBrains Mono', 'Cascadia Code', 'Consolas', monospace" font-size="12.5" opacity="0.85">
+    <tspan x="100" dy="415" fill="#00aa55">user@awesome</tspan><tspan fill="#444">:</tspan><tspan fill="#00ff88">~</tspan><tspan fill="#444">$</tspan><tspan fill="#999"> cat workflows.log</tspan>
+  </text>
+
+  <text font-family="'JetBrains Mono', 'Cascadia Code', 'Consolas', monospace" font-size="12">
+    <tspan x="100" y="440" fill="#00ff88">[INIT]</tspan><tspan fill="#777"> loading workflow database ............ done</tspan>
+    <tspan x="100" dy="18" fill="#00ff88">[ OK ]</tspan><tspan fill="#777"> all entries tested and verified</tspan>
+    <tspan x="100" dy="18" fill="#00ff88">[ OK ]</tspan><tspan fill="#777"> copy-paste protocols active</tspan>
+    <tspan x="100" dy="18" fill="#00ff88">[ OK ]</tspan><tspan fill="#777"> automation sequences armed</tspan>
+  </text>
+
+  <text font-family="'JetBrains Mono', 'Cascadia Code', 'Consolas', monospace" font-size="12.5" opacity="0.85">
+    <tspan x="100" dy="530" fill="#00aa55">user@awesome</tspan><tspan fill="#444">:</tspan><tspan fill="#00ff88">~</tspan><tspan fill="#444">$</tspan><tspan fill="#999"> ls categories/</tspan>
+  </text>
+
+  <text font-family="'JetBrains Mono', 'Consolas', monospace" font-size="12">
+    <tspan x="100" y="555" fill="#4488cc">dev/</tspan><tspan fill="#333">  </tspan><tspan fill="#4488cc">devops/</tspan><tspan fill="#333">  </tspan><tspan fill="#4488cc">research/</tspan><tspan fill="#333">  </tspan><tspan fill="#4488cc">productivity/</tspan><tspan fill="#333">  </tspan><tspan fill="#4488cc">security/</tspan><tspan fill="#333">  </tspan><tspan fill="#4488cc">marketing/</tspan><tspan fill="#333">  </tspan><tspan fill="#4488cc">music/</tspan>
+  </text>
+
+  <!-- Final prompt + cursor -->
+  <text font-family="'JetBrains Mono', 'Cascadia Code', 'Consolas', monospace" font-size="12.5" opacity="0.85">
+    <tspan x="100" y="585" fill="#00aa55">user@awesome</tspan><tspan fill="#444">:</tspan><tspan fill="#00ff88">~</tspan><tspan fill="#444">$</tspan>
+  </text>
+  <rect x="232" y="574" width="8" height="14" fill="#00ff88" opacity="0.8">
+    <animate attributeName="opacity" values="0.8;0;0.8" dur="1s" repeatCount="indefinite"/>
+  </rect>
+
+  <!-- ====== RIGHT SIDE: System panel ====== -->
+  <text font-family="'JetBrains Mono', monospace" font-size="10" fill="#00ff88" opacity="0.4" letter-spacing="1">
+    <tspan x="810" y="420">┌─ SYSTEM STATUS ──────────────────┐</tspan>
+    <tspan x="810" dy="18">│                                  │</tspan>
+    <tspan x="810" dy="16">│</tspan><tspan fill="#00aa55"> WORKFLOWS </tspan><tspan fill="#333">........</tspan><tspan fill="#00ff88"> loaded     </tspan><tspan fill="#00ff88" opacity="0.4">│</tspan>
+    <tspan x="810" dy="16">│</tspan><tspan fill="#00aa55"> TESTED    </tspan><tspan fill="#333">........</tspan><tspan fill="#00ff88"> all        </tspan><tspan fill="#00ff88" opacity="0.4">│</tspan>
+    <tspan x="810" dy="16">│</tspan><tspan fill="#00aa55"> LICENSE   </tspan><tspan fill="#333">........</tspan><tspan fill="#00ff88"> CC0 1.0    </tspan><tspan fill="#00ff88" opacity="0.4">│</tspan>
+    <tspan x="810" dy="16">│</tspan><tspan fill="#00aa55"> FOCUS     </tspan><tspan fill="#333">........</tspan><tspan fill="#00ff88"> copy-paste </tspan><tspan fill="#00ff88" opacity="0.4">│</tspan>
+    <tspan x="810" dy="16">│</tspan><tspan fill="#00aa55"> STATUS    </tspan><tspan fill="#333">........</tspan><tspan fill="#00ff88"> ████████ ✓ </tspan><tspan fill="#00ff88" opacity="0.4">│</tspan>
+    <tspan x="810" dy="18">│                                  │</tspan>
+    <tspan x="810" dy="16">│</tspan><tspan fill="#555"> if one workflow saves your        </tspan><tspan fill="#00ff88" opacity="0.4">│</tspan>
+    <tspan x="810" dy="16">│</tspan><tspan fill="#555"> afternoon, star the repo.         </tspan><tspan fill="#00ff88" opacity="0.4">│</tspan>
+    <tspan x="810" dy="18">└──────────────────────────────────┘</tspan>
+  </text>
+
+  <!-- ====== DECORATIVE ELEMENTS ====== -->
+
+  <!-- Scan lines -->
+  <line x1="0" y1="395" x2="1280" y2="395" stroke="#00ff88" stroke-width="0.3" opacity="0.08"/>
+  <line x1="0" y1="190" x2="250" y2="190" stroke="#00ff88" stroke-width="0.5" opacity="0.1"/>
+  <line x1="1030" y1="190" x2="1280" y2="190" stroke="#00ff88" stroke-width="0.5" opacity="0.1"/>
+
+  <!-- Corner brackets -->
+  <path d="M60,72 L60,68 L64,68" fill="none" stroke="#00ff88" stroke-width="1" opacity="0.25"/>
+  <path d="M1220,72 L1220,68 L1216,68" fill="none" stroke="#00ff88" stroke-width="1" opacity="0.25"/>
+  <path d="M60,600 L60,604 L64,604" fill="none" stroke="#00ff88" stroke-width="1" opacity="0.25"/>
+  <path d="M1220,600 L1220,604 L1216,604" fill="none" stroke="#00ff88" stroke-width="1" opacity="0.25"/>
+
+  <!-- Particles -->
+  <circle cx="180" cy="85" r="1" fill="#00ff88" opacity="0.35"/>
+  <circle cx="500" cy="92" r="0.8" fill="#00ff88" opacity="0.25"/>
+  <circle cx="1100" cy="88" r="1" fill="#00ff88" opacity="0.3"/>
+  <circle cx="350" cy="610" r="0.8" fill="#00ff88" opacity="0.2"/>
+  <circle cx="900" cy="615" r="1" fill="#00ff88" opacity="0.15"/>
+
+  <!-- Binary ghost text -->
+  <text font-family="'JetBrains Mono', monospace" font-size="9" fill="#00ff88" opacity="0.05">
+    <tspan x="1080" y="100">01100001 01110111</tspan>
+    <tspan x="1100" y="115">01100101 01110011</tspan>
+    <tspan x="1090" y="130">01101111 01101101</tspan>
+    <tspan x="1110" y="145">01100101 00100001</tspan>
+  </text>
+  <text font-family="'JetBrains Mono', monospace" font-size="9" fill="#00ff88" opacity="0.04">
+    <tspan x="70" y="475">01110111 01101111</tspan>
+    <tspan x="60" y="490">01110010 01101011</tspan>
+  </text>
+
+  <!-- Bottom bar -->
+  <line x1="50" y1="612" x2="1230" y2="612" stroke="#00ff88" stroke-width="0.5" opacity="0.1"/>
+  <text x="50" y="630" font-family="'JetBrains Mono', 'Consolas', monospace" font-size="9" fill="#00ff88" opacity="0.25" letter-spacing="2">
+    OPEN SOURCE // CC0 1.0 // COPY-PASTE READY // TESTED
+  </text>
+  <text x="1230" y="630" text-anchor="end" font-family="'JetBrains Mono', 'Consolas', monospace" font-size="9" fill="#00ff88" opacity="0.2" letter-spacing="2">
+    github.com/awesome-ai-workflows-that-work
+  </text>
+</svg>
