@@ -14,7 +14,7 @@ These are the folders under `workflows/`. They keep the repo easy to navigate in
 - `music`
 - `video`
 - `security`
-- `MeetingNotes`
+- `meetings`
 
 ## 2. Reader-facing categories
 
@@ -38,7 +38,6 @@ These are the sections a human sees in `README.md`. They are based on intent, no
 ## Normalization rules
 
 - Use lowercase category values in frontmatter where possible.
-- Prefer `meetings` instead of `MeetingNotes` in frontmatter for new or revised files.
 - Keep the folder path stable unless there is a strong reason to move files.
 - If a workflow can fit in two places, choose the place a new reader would look first.
 
