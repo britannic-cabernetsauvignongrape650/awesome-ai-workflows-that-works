@@ -22,7 +22,7 @@ Works for: tutorials, conference talks, podcast episodes, webinar recordings, Yo
 
 | Tool | Role | Cost |
 |------|------|------|
-| [Whisper](https://github.com/openai/whisper) | Local transcription — free, no data leaves your machine | Free (open-source) |
+| [Whisper](https://github.com/openai/whisper) / [faster-whisper](https://github.com/SYSTRAN/faster-whisper) | Local transcription — free, no data leaves your machine | Free (open-source) |
 | [yt-dlp](https://github.com/yt-dlp/yt-dlp) | Download YouTube audio for transcription | Free (open-source) |
 | [Claude.ai](https://claude.ai) | Blog post, chapters, clips, SEO metadata | Free / Pro $20/mo |
 | [Descript](https://www.descript.com) | Transcript-based video editing, word-level cuts | Free / Creator $24/mo |
@@ -34,27 +34,65 @@ Works for: tutorials, conference talks, podcast episodes, webinar recordings, Yo
 
 ### Option A — Your own recording (local file)
 
+You have two options for local transcription: **Whisper** (original OpenAI) or **faster-whisper** (recommended — up to 4x faster, lower memory usage, same accuracy).
+
+#### Using faster-whisper (recommended)
+
+```bash
+# Install faster-whisper
+pip install faster-whisper
+
+# Transcribe — pick model and compute type based on your hardware (see table below)
+faster-whisper my_video.mp4 --model medium --language en -o out.txt
+
+# CPU-only (no NVIDIA GPU) — use int8 quantization:
+faster-whisper my_video.mp4 --model base --compute_type int8 --language en -o out.txt
+
+# NVIDIA GPU with FP16 support:
+faster-whisper my_video.mp4 --model large-v3 --compute_type float16 --language en -o out.txt
+
+# With timestamps (needed for chapter markers):
+faster-whisper my_video.mp4 --model medium --language en -o out.srt
+```
+
+> See the [faster-whisper docs](https://github.com/SYSTRAN/faster-whisper) for all options and supported compute types.
+
+#### Using Whisper (original)
+
 ```bash
 # Install Whisper
 pip install openai-whisper
 
-# Transcribe (choose model based on your hardware)
+# Transcribe
 whisper my_video.mp4 --model medium --output_format txt
-# Output: my_video.txt
 
-# For better accuracy on technical content:
-whisper my_video.mp4 --model large-v3 --output_format txt
-
-# With timestamps (needed for chapter markers):
+# With timestamps:
 whisper my_video.mp4 --model medium --output_format srt
 ```
 
-**Model selection guide:**
-| Model | Size | Speed | Quality | Use When |
+> See the [Whisper docs](https://github.com/openai/whisper) for all options.
+
+#### Choosing the right model and settings
+
+Pick your model based on your hardware and quality needs:
+
+| Model | Size | Speed | Quality | Best for |
 |-------|------|-------|---------|----------|
 | `tiny` | 39MB | Very fast | Low | Quick draft, you'll edit heavily |
-| `medium` | 769MB | Moderate | Good | Most use cases |
+| `base` | 74MB | Fast | Decent | CPU-only machines, quick results |
+| `medium` | 769MB | Moderate | Good | Most use cases, good balance |
 | `large-v3` | 1.5GB | Slow | Best | Final content, technical vocab |
+
+Pick your `--compute_type` (faster-whisper only) based on your hardware:
+
+| Hardware | Recommended `--compute_type` | Notes |
+|----------|------------------------------|-------|
+| CPU only (Intel/AMD, no dedicated GPU) | `int8` | Fastest option on CPU, minimal quality loss |
+| NVIDIA GPU (RTX 20xx+) | `float16` | Best speed/quality on modern GPUs |
+| NVIDIA GPU (older / low VRAM) | `int8_float16` | Saves VRAM while keeping decent speed |
+| Apple Silicon (M1/M2/M3) | `int8` | GPU acceleration not yet supported, use CPU |
+
+> **Not sure?** Start with `--model base --compute_type int8` — it works everywhere. Upgrade to `medium` or `large-v3` if quality isn't good enough.
 
 ### Option B — YouTube video
 
@@ -65,8 +103,9 @@ pip install yt-dlp
 # Download audio only
 yt-dlp -x --audio-format mp3 "https://www.youtube.com/watch?v=VIDEO_ID" -o "video.mp3"
 
-# Transcribe
-whisper video.mp3 --model medium --output_format txt
+# Transcribe (use either one)
+faster-whisper video.mp3 --model medium --language en -o out.txt
+# or: whisper video.mp3 --model medium --output_format txt
 
 # Or: just use YouTube's auto-generated captions
 # YouTube Studio → Subtitles → Download → .srt
@@ -78,7 +117,7 @@ Both tools export transcripts directly. Download as `.txt` from their dashboard.
 
 ---
 
-## Step 2: Generate All Content in One Pass
+## Step 2: Generate All Content in One Pass (AI-Generated Text)
 
 Paste your transcript into Claude with this prompt:
 
@@ -151,11 +190,13 @@ Why it works: Complete standalone insight, no context needed, solves a
 Hook text: "Your RAG pipeline is probably chunking wrong. Here's why. 🧵"
 ```
 
+> **What you get from Step 2:** Text-based deliverables (blog post, chapter markers, pull quotes). The clip timestamps tell you *where* and *what* to extract, but you still need to actually edit the video file.
+
 ---
 
-## Step 3: Short-Form Video Editing
+## Step 3: Edit Video Clips (Manual Video Extraction)
 
-Once you have the clip timestamps from Step 2:
+Once you have the clip timestamps from Step 2, extract and edit the actual video files:
 
 ### With Descript (recommended for precision)
 1. Import the video into [Descript](https://www.descript.com)
@@ -197,6 +238,7 @@ See [n8n YouTube automation templates](https://n8n.io/workflows/?categories=mark
 ## Sources
 
 - [OpenAI Whisper GitHub](https://github.com/openai/whisper) — model docs and API reference
+- [faster-whisper GitHub](https://github.com/SYSTRAN/faster-whisper) — faster alternative with CTranslate2, supports CPU int8 and GPU float16
 - [yt-dlp GitHub](https://github.com/yt-dlp/yt-dlp) — YouTube/audio downloader
 - [Descript documentation](https://help.descript.com) — transcript-based editing
 - [YouTube chapter markers guide (Google)](https://support.google.com/youtube/answer/9884579) — official format requirements
