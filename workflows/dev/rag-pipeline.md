@@ -244,7 +244,7 @@ For technical documentation with precise terminology, start at `alpha=0.3`. For 
 
 - **Chunking quality determines retrieval quality.** A bad chunk strategy makes even the best embedding model underperform. Invest time in tuning `breakpoint_percentile_threshold`.
 - **PDF parsing is lossy.** Tables and multi-column layouts confuse most PDF parsers. Use [Unstructured.io](https://unstructured.io) for complex PDFs.
-- **Embedding costs scale.** At 1,000 documents × 50 chunks × 1,536 dimensions, `text-embedding-3-large` costs ~$0.50 to index. Set up incremental updates — don't re-index everything daily.
+- **Embedding costs scale.** At 1,000 documents × 50 chunks × 3,072 dimensions, `text-embedding-3-large` costs ~$0.50 to index. Set up incremental updates — don't re-index everything daily.
 - **Hallucinations happen.** Claude will sometimes extrapolate beyond the retrieved chunks. Always include `"Answer ONLY from the provided context. If the answer is not in the context, say so."` in your system prompt.
 
 ---

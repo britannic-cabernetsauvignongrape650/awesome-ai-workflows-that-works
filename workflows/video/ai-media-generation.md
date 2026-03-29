@@ -2,7 +2,7 @@
 name: AI Media Generation Map
 category: video
 difficulty: beginner
-tools: Suno, HeyGen, Descript, Adobe Podcast, Runway, ElevenLabs
+tools: Suno, HeyGen, Descript, Adobe Podcast
 tested: false
 ---
 

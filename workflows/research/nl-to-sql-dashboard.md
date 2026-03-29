@@ -144,14 +144,21 @@ Observation: Enterprise growth is strong but SMB is contracting significantly
 a support issue, or is it consistent with a seasonal pattern?
 
 SQL used:
+WITH monthly AS (
+  SELECT
+    product_category,
+    SUM(CASE WHEN DATE_TRUNC('month', created_at) = '2026-03-01' THEN amount END) AS march_rev,
+    SUM(CASE WHEN DATE_TRUNC('month', created_at) = '2026-02-01' THEN amount END) AS feb_rev
+  FROM orders
+  WHERE created_at >= '2026-02-01'
+  GROUP BY 1
+)
 SELECT
   product_category,
-  SUM(CASE WHEN DATE_TRUNC('month', created_at) = '2026-03-01' THEN amount END) AS march_rev,
-  SUM(CASE WHEN DATE_TRUNC('month', created_at) = '2026-02-01' THEN amount END) AS feb_rev,
+  march_rev,
+  feb_rev,
   ROUND((march_rev - feb_rev) / feb_rev * 100, 1) AS pct_change
-FROM orders
-WHERE created_at >= '2026-02-01'
-GROUP BY 1
+FROM monthly
 ORDER BY march_rev DESC;
 ```
 

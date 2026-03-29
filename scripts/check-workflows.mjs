@@ -5,6 +5,20 @@ const repoRoot = process.cwd();
 const workflowsDir = path.join(repoRoot, "workflows");
 const readmePath = path.join(repoRoot, "README.md");
 
+const ALLOWED_CATEGORIES = [
+  "dev",
+  "devops",
+  "marketing",
+  "research",
+  "productivity",
+  "music",
+  "video",
+  "security",
+  "meetings",
+];
+
+const ALLOWED_DIFFICULTIES = ["beginner", "intermediate", "advanced"];
+
 function walkMarkdownFiles(dir) {
   const entries = readdirSync(dir, { withFileTypes: true });
   const files = [];
@@ -33,6 +47,11 @@ function getFrontmatter(text) {
   return match ? match[1] : null;
 }
 
+function getFrontmatterValue(frontmatter, key) {
+  const match = frontmatter.match(new RegExp(`^${key}:\\s*(.+)$`, "m"));
+  return match ? match[1].trim() : null;
+}
+
 function getSourcesSection(text) {
   const lines = text.split(/\r?\n/);
   const start = lines.findIndex((line) => line.trim() === "## Sources");
@@ -52,10 +71,16 @@ function getSourcesSection(text) {
   return collected.join("\n").trim();
 }
 
+function getContentWithoutFrontmatter(text) {
+  return text.replace(/^---\r?\n[\s\S]*?\r?\n---\r?\n/, "");
+}
+
 const workflowFiles = walkMarkdownFiles(workflowsDir);
 const workflowCount = workflowFiles.length;
 const readme = readFileSync(readmePath, "utf8");
 const errors = [];
+
+// --- README checks ---
 
 const badgePattern = new RegExp(`img\\.shields\\.io/badge/workflows-${workflowCount}-blue`);
 if (!badgePattern.test(readme)) {
@@ -73,6 +98,16 @@ if (!introPattern.test(readme)) {
   );
 }
 
+// Check that every workflow file is linked in README
+for (const file of workflowFiles) {
+  const relPath = path.relative(repoRoot, file).replaceAll("\\", "/");
+  if (!readme.includes(relPath)) {
+    fail(`${relPath}: not linked in README.md.`, errors);
+  }
+}
+
+// --- Per-workflow checks ---
+
 for (const file of workflowFiles) {
   const relPath = path.relative(repoRoot, file).replaceAll("\\", "/");
   const text = readFileSync(file, "utf8");
@@ -83,18 +118,49 @@ for (const file of workflowFiles) {
     continue;
   }
 
-  for (const key of ["name", "category", "difficulty", "tested"]) {
+  // Required fields
+  for (const key of ["name", "category", "difficulty", "tools", "tested"]) {
     const keyPattern = new RegExp(`^${key}:\\s*.+$`, "m");
     if (!keyPattern.test(frontmatter)) {
       fail(`${relPath}: missing frontmatter field "${key}".`, errors);
     }
   }
 
+  // Validate tested is boolean
   const testedMatch = frontmatter.match(/^tested:\s*(true|false)\s*$/m);
   if (!testedMatch) {
     fail(`${relPath}: "tested" must be true or false.`, errors);
   }
 
+  // Validate category value
+  const category = getFrontmatterValue(frontmatter, "category");
+  if (category && !ALLOWED_CATEGORIES.includes(category)) {
+    fail(
+      `${relPath}: invalid category "${category}". Allowed: ${ALLOWED_CATEGORIES.join(", ")}.`,
+      errors,
+    );
+  }
+
+  // Validate difficulty value
+  const difficulty = getFrontmatterValue(frontmatter, "difficulty");
+  if (difficulty && !ALLOWED_DIFFICULTIES.includes(difficulty)) {
+    fail(
+      `${relPath}: invalid difficulty "${difficulty}". Allowed: ${ALLOWED_DIFFICULTIES.join(", ")}.`,
+      errors,
+    );
+  }
+
+  // Minimum content length (excluding frontmatter)
+  const content = getContentWithoutFrontmatter(text);
+  const contentLines = content.split(/\r?\n/).filter((l) => l.trim().length > 0);
+  if (contentLines.length < 20) {
+    fail(
+      `${relPath}: too short (${contentLines.length} non-empty lines, minimum 20).`,
+      errors,
+    );
+  }
+
+  // Required sections
   if (!/^## Validation$/m.test(text)) {
     fail(`${relPath}: missing "## Validation" section.`, errors);
   }
@@ -104,6 +170,7 @@ for (const file of workflowFiles) {
     continue;
   }
 
+  // Sources must have at least one markdown link
   const sourcesSection = getSourcesSection(text);
   if (!sourcesSection) {
     fail(`${relPath}: empty "## Sources" section.`, errors);
@@ -129,6 +196,7 @@ for (const file of workflowFiles) {
     }
   }
 
+  // tested=false validation explanation
   if (testedMatch?.[1] === "false") {
     const validationSection = text.match(/^## Validation\r?\n([\s\S]*?)(?=^## |\Z)/m)?.[1] ?? "";
     if (!/\b(source|checked|validated|reviewed)\b/i.test(validationSection)) {

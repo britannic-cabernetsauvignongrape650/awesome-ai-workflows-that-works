@@ -124,7 +124,7 @@ scoop install extras/vscode
 - [Ninite](https://ninite.com/)
 - [Ninite Pro: command-line app selection](https://ninite.com/help/features/selection.html)
 - [Ninite Pro: remote mode](https://ninite.com/help/features/remote.html)
-- [Scoop](https://scoop.sh/Scoop/)
+- [Scoop](https://scoop.sh)
 - [Scoop GitHub repository](https://github.com/ScoopInstaller/Scoop)
 - [NinjaOne: getting started with automation scripting](https://www.ninjaone.com/docs/scripting-and-automation/getting-started-automation-scripting/)
 - [NinjaOne: run or install application automations](https://www.ninjaone.com/docs/scripting-and-automation/install-application-automations/)

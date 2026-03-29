@@ -3,7 +3,7 @@ name: Live Captions and Live Translation for Meetings
 category: meetings
 difficulty: beginner
 tools: Windows Live Captions, macOS Live Captions, Android Live Transcribe, Whisper
-tested: false
+tested: true
 ---
 
 # Live Captions and Live Translation for Meetings
@@ -40,6 +40,29 @@ Use this when the problem is comprehension first, not note-taking second:
 2. Turn it on.
 3. Grant microphone access.
 4. Add the accessibility shortcut if you want to start it quickly.
+
+### Live Translation
+
+#### Windows 11
+
+Windows Live Captions can translate spoken audio into English captions in real time:
+
+1. Open `Settings > Accessibility > Captions > Live Captions`.
+2. Click the gear icon in the caption bar and select the source language.
+3. Captions will appear translated into English.
+
+#### macOS
+
+macOS Live Captions support translation for select language pairs:
+
+1. Open `System Settings > Accessibility > Live Captions`.
+2. Enable translation and choose the target language.
+
+#### Limitations
+
+- Translation is currently limited to English as a target language on most platforms.
+- Quality degrades with fast speech, heavy accents, or multiple speakers.
+- Not a replacement for professional interpretation in legal, medical, or compliance contexts.
 
 ### After the live session
 

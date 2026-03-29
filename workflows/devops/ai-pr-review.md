@@ -291,20 +291,17 @@ GitHub → repo Settings → Branches → Add rule
 
 ---
 
-## Metrics: What AI Review Catches
+## What AI Review Is Good At
 
-Based on internal data from teams using CodeRabbit (2025):
+AI review is strongest at catching mechanical and pattern-based issues:
 
-| Issue Type | % Caught by AI | % Would Reach Prod Without AI |
-|-----------|----------------|-------------------------------|
-| N+1 queries | 91% | ~35% |
-| Missing error handling | 78% | ~60% |
-| Security vulnerabilities | 82% | ~40% |
-| Hardcoded credentials | 97% | ~20% |
-| Missing input validation | 85% | ~50% |
-| Test coverage gaps | 71% | ~70% |
+- **Hardcoded credentials** — near-perfect detection; easy for AI to spot, easy for humans to miss
+- **N+1 queries** — AI reliably flags repeated queries inside loops
+- **Security vulnerabilities** — SQL injection, XSS, missing auth checks
+- **Missing input validation** — boundary conditions and null checks
+- **Missing error handling** — uncaught exceptions and ignored return values
 
-AI review is most valuable for security and mechanical correctness. Humans remain essential for architecture and intent.
+AI review is weakest at architecture decisions, business logic correctness, and naming quality. Humans remain essential for those.
 
 ---
 

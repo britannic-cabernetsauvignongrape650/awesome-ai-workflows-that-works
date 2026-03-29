@@ -293,8 +293,8 @@ With 20 issues/month average: ~$2–10/month. Set billing alerts in Anthropic co
 ## Validation
 
 - Last reviewed: 2026-03-28
-- Tested flag in repo: true
-- This revision checked the structure, links, and step order against the sources below. Re-run the workflow in your own stack before relying on exact UI labels, pricing, or model behavior.
+- Tested flag in repo: false
+- Source-validated against the Anthropic Claude Code documentation, GitHub Actions docs, and tested workflow structures. The exact CI execution has not been end-to-end verified in a live repository.
 
 ## Failure modes
 

@@ -2,7 +2,7 @@
 name: Claude Skills — Complete Reference
 category: dev
 difficulty: beginner
-tools: Claude Code, Claude.ai, Composio, Anthropic Skills
+tools: Claude Code, Composio
 tested: false
 ---
 
@@ -12,10 +12,7 @@ tested: false
 
 ## What Are Claude Skills?
 
-Skills are instruction sets (SKILL.md files) that inject domain expertise, workflows, and tool access into Claude at invocation time. They work across:
-- **Claude.ai** (chat interface)
-- **Claude Code** (terminal agent)
-- **Claude API** (programmatic use)
+Skills are instruction sets (SKILL.md files) that inject domain expertise, workflows, and tool access into Claude Code at invocation time. They are a **Claude Code feature** — SKILL.md files are read automatically from `.claude/skills/` when Claude Code starts.
 
 Skills are separate from MCP servers: MCP gives Claude tool access; Skills give Claude knowledge and workflow patterns.
 
@@ -53,7 +50,7 @@ Browse these repositories for ready-to-use SKILL.md files:
 |-------|--------|--------------|
 | TDD patterns | [awesome-agent-skills](https://github.com/VoltAgent/awesome-agent-skills) | Red-Green-Refactor enforcement |
 | Debugging | [awesome-agent-skills](https://github.com/VoltAgent/awesome-agent-skills) | Root cause tracing before patching |
-| Terraform | [hashicorp/agent-skills](https://github.com/hashicorp/agent-skills) | HCL patterns and provider knowledge |
+| Terraform | [awesome-agent-skills](https://github.com/VoltAgent/awesome-agent-skills) | HCL patterns and provider knowledge |
 
 Copy the SKILL.md files you want into your `.claude/skills/` directory.
 

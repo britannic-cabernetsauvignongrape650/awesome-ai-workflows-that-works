@@ -35,7 +35,7 @@ RSS feeds are underused in modern automation stacks. They're:
 | Hacker News | `https://news.ycombinator.com/rss` |
 | ArXiv (by topic) | `https://arxiv.org/rss/cs.AI` |
 | Product Hunt | `https://www.producthunt.com/feed` |
-| Twitter/X lists | (removed, use Nitter instances) |
+| Twitter/X lists | (no native RSS; use [RSSHub](https://rsshub.app) or RSS.app as a proxy) |
 
 **Tools for discovering RSS:**
 - [RSS.app](https://rss.app) — generate RSS for sites without native feeds

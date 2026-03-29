@@ -191,7 +191,7 @@ await browser.close();
 **GitHub:** [SeleniumHQ/selenium](https://github.com/SeleniumHQ/selenium) — 30K+ ⭐
 **Type:** Library (Python, Java, C#, Ruby, JavaScript)
 
-The veteran of browser automation. Still widely used for cross-browser testing (especially IE/Edge compatibility) and in enterprise environments. Slower than Playwright with less ergonomic API, but unmatched ecosystem and documentation.
+The veteran of browser automation. Still widely used for cross-browser testing and in enterprise environments. Slower than Playwright with less ergonomic API, but unmatched ecosystem and documentation.
 
 ```bash
 pip install selenium

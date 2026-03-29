@@ -117,7 +117,7 @@ Do this in order:
 - [Ninite home page](https://ninite.com/)
 - [Ninite Pro command-line app selection](https://ninite.com/help/features/selection.html)
 - [Ninite Pro switch reference](https://remote.ninite.com/help/features/switches.html)
-- [Scoop home page](https://scoop.sh/Scoop/)
+- [Scoop home page](https://scoop.sh)
 - [Scoop GitHub repository](https://github.com/ScoopInstaller/Scoop)
 - [Scoop buckets wiki](https://github.com/ScoopInstaller/Scoop/wiki/Buckets)
 - [NinjaOne: getting started with automation scripting](https://www.ninjaone.com/docs/scripting-and-automation/getting-started-automation-scripting/)

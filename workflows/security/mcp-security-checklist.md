@@ -8,13 +8,11 @@ tested: false
 
 # MCP Security Checklist for Production
 
-> 65% of MCP tools now modify external state. Every tool call is a potential security event — here's how to deploy safely.
+> A growing share of MCP tools modify external state. Every tool call is a potential security event — here's how to deploy safely.
 
 ## Why This Matters
 
-A March 2026 study of 177,000 MCP tools ([Stein, arXiv:2603.23802](https://arxiv.org)) found that "action tools" — tools that modify external state (send email, write files, call APIs) — went from 27% to 65% of the MCP ecosystem in 16 months.
-
-When an agent can send email, write to a database, and push code, a single compromised prompt can cause significant damage. The checklist below reflects what production teams actually do to contain this.
+The MCP ecosystem has shifted rapidly from read-only tools (search, retrieve) toward "action tools" that modify external state: send email, write files, call APIs, push code. As more tools gain write access, a single compromised prompt can cause significant damage. The checklist below reflects what production teams actually do to contain this.
 
 ---
 
@@ -302,12 +300,11 @@ If an agent takes an unexpected action:
 ## Validation
 
 - Last reviewed: 2026-03-28
-- Tested flag in repo: true
-- This revision checked the structure, links, and step order against the sources below. Re-run the workflow in your own stack before relying on exact UI labels, pricing, or model behavior.
+- Tested flag in repo: false
+- Source-validated against MCP security documentation, OWASP LLM Top 10, and Claude Code permissions docs. Individual techniques are well-established but the combined checklist has not been end-to-end verified in a production deployment.
 
 ## Sources
 
-- [Stein, M. "How are AI Agents Used?" arXiv:2603.23802 (March 2026)](https://arxiv.org/abs/2603.23802) — the 65% action-tools statistic
 - [MCP Security documentation](https://modelcontextprotocol.io/docs/concepts/security)
 - [OWASP Top 10 for LLM Applications 2025](https://owasp.org/www-project-top-10-for-large-language-model-applications/)
 - [Claude Code permissions documentation](https://docs.anthropic.com/en/docs/claude-code/security)

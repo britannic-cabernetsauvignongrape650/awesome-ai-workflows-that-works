@@ -133,29 +133,32 @@ Validate that the agent's output matches what you expect — not what an injecte
 
 ```python
 import json
-from pydantic import BaseModel, validator
+from pydantic import BaseModel, field_validator
 
 class SupportTicket(BaseModel):
     category: str
     priority: str
     summary: str
 
-    @validator('category')
-    def category_must_be_valid(cls, v):
+    @field_validator('category')
+    @classmethod
+    def category_must_be_valid(cls, v: str) -> str:
         allowed = ['billing', 'technical', 'account', 'general']
         if v not in allowed:
             raise ValueError(f'Invalid category: {v}. Must be one of {allowed}')
         return v
 
-    @validator('priority')
-    def priority_must_be_valid(cls, v):
+    @field_validator('priority')
+    @classmethod
+    def priority_must_be_valid(cls, v: str) -> str:
         allowed = ['low', 'medium', 'high', 'urgent']
         if v not in allowed:
             raise ValueError(f'Invalid priority: {v}')
         return v
 
-    @validator('summary')
-    def summary_must_not_contain_urls(cls, v):
+    @field_validator('summary')
+    @classmethod
+    def summary_must_not_contain_urls(cls, v: str) -> str:
         # Injected instructions often try to exfiltrate data via URLs
         if re.search(r'https?://', v):
             raise ValueError('Summary contains URL — potential exfiltration attempt')
@@ -313,8 +316,8 @@ def log_security_event(event_type: str, details: dict):
 ## Validation
 
 - Last reviewed: 2026-03-28
-- Tested flag in repo: true
-- This revision checked the structure, links, and step order against the sources below. Re-run the workflow in your own stack before relying on exact UI labels, pricing, or model behavior.
+- Tested flag in repo: false
+- Source-validated against OWASP LLM Top 10, Anthropic prompt injection guidance, and published research. Code patterns are illustrative and should be adapted to your stack.
 
 ## Sources
 

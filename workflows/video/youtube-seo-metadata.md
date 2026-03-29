@@ -165,8 +165,8 @@ The difference between a good and great title is often 50-200% in CTR. A/B testi
 ## Validation
 
 - Last reviewed: 2026-03-28
-- Tested flag in repo: true
-- This revision checked the structure, links, and step order against the sources below. Re-run the workflow in your own stack before relying on exact UI labels, pricing, or model behavior.
+- Tested flag in repo: false
+- Source-validated against YouTube Creator Academy, TubeBuddy, and VidIQ documentation. Prompt outputs not end-to-end verified against a live channel.
 
 ## Failure modes
 

@@ -127,12 +127,15 @@ result = app.invoke({"messages": []})
 
 Conversational multi-agent framework from Microsoft Research. Agents communicate through messages in a chat-like interface. Supports code execution in Docker sandboxes, human-in-the-loop, and teacher-student agent patterns.
 
+> **Note:** AutoGen 0.4+ introduced a new API under `autogen_agentchat`. The example below uses the legacy 0.2.x API (`pyautogen`) which is still available but no longer actively developed. Check the docs for the current API.
+
 ```python
+# Legacy API (autogen 0.2.x / pyautogen)
 from autogen import AssistantAgent, UserProxyAgent
 
 assistant = AssistantAgent(
     name="assistant",
-    llm_config={"model": "claude-sonnet-4-6"}
+    llm_config={"model": "claude-sonnet-4-6"}  # requires OpenAI-compatible proxy for Claude
 )
 
 user_proxy = UserProxyAgent(

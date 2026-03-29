@@ -2,7 +2,7 @@
 name: Infrastructure as Code with Claude + Terraform
 category: devops
 difficulty: advanced
-tools: Claude Code, HashiCorp Terraform, hashicorp/terraform skill, AWS/GCP/Azure
+tools: Claude Code, HashiCorp Terraform, AWS/GCP/Azure
 tested: true
 ---
 
@@ -12,7 +12,7 @@ tested: true
 
 ## What this is for
 
-Terraform is powerful but verbose. Writing correct HCL from scratch requires knowing provider-specific gotchas, module patterns, and state management. This workflow uses Claude Code with the official HashiCorp Terraform skill, which gives Claude the domain knowledge to produce correct, idiomatic Terraform on the first try.
+Terraform is powerful but verbose. Writing correct HCL from scratch requires knowing provider-specific gotchas, module patterns, and state management. This workflow uses Claude Code with a project CLAUDE.md containing your Terraform conventions, which gives Claude the domain knowledge to produce correct, idiomatic Terraform on the first try.
 
 **What it covers:** generating new infrastructure, modifying existing configs, diagnosing plan errors, explaining state drift.
 
@@ -23,7 +23,6 @@ Terraform is powerful but verbose. Writing correct HCL from scratch requires kno
 | Tool | Role | Docs |
 |------|------|------|
 | [Claude Code](https://claude.ai/code) | Orchestrates the workflow | [Docs](https://docs.anthropic.com/en/docs/claude-code) |
-| [hashicorp/terraform skill](https://github.com/hashicorp/agent-skills) | Domain knowledge: HCL patterns, state, modules | [Skill](https://github.com/hashicorp/agent-skills) |
 | [Terraform CLI](https://developer.hashicorp.com/terraform/downloads) | Plan, apply, state management | [Docs](https://developer.hashicorp.com/terraform/cli) |
 | AWS / GCP / Azure | Target cloud provider | — |
 
@@ -284,7 +283,7 @@ Without domain context, Claude generates plausible-looking but often broken HCL:
 - IAM policy documents with syntax errors
 - Security group rules in wrong format
 
-Adding a CLAUDE.md with your Terraform conventions and provider versions, plus the [HashiCorp agent-skills](https://github.com/hashicorp/agent-skills) as a reference, helps Claude produce correct HCL on the first try instead of 3-4 fix cycles.
+Adding a CLAUDE.md with your Terraform conventions and provider versions helps Claude produce correct HCL on the first try instead of 3-4 fix cycles.
 
 ---
 
@@ -306,7 +305,6 @@ Adding a CLAUDE.md with your Terraform conventions and provider versions, plus t
 
 ## Sources
 
-- [HashiCorp agent-skills GitHub](https://github.com/hashicorp/agent-skills) — official Terraform skill
 - [Terraform documentation](https://developer.hashicorp.com/terraform/docs)
 - [Terraform in Depth](https://www.manning.com/books/terraform-in-depth) — Terraform and OpenTofu practices
 - [Infracost](https://infracost.io) — cost estimation for Terraform plans

@@ -244,7 +244,7 @@ Format as an action plan the team can prioritize.
 ## Failure modes
 
 - **Log volume.** Fetch a reasonable window (5-15 min) and limit to error-level logs. Sending 10,000 log lines to Claude is expensive and the signal gets lost.
-- **Sensitive data in logs.** Log lines may contain PII or credentials. Redact before sending to the Claude API. Use a local Claude deployment (Ollama) if logs contain regulated data.
+- **Sensitive data in logs.** Log lines may contain PII or credentials. Redact before sending to the Claude API. Use a local LLM via Ollama (e.g., Llama, Mistral) if logs contain regulated data.
 - **AI diagnosis is hypothesis, not fact.** Engineers still verify before acting. The diagnosis gets you to the right hypothesis faster — it's not a guarantee.
 - **Tail latency for triage.** The n8n → Datadog API → Claude API → Slack chain adds 10-30 seconds to the time before you get notified. If you need immediate paging, trigger PagerDuty first and run diagnosis in parallel.
 

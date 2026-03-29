@@ -249,7 +249,7 @@ This workflow sends email content to the Claude API (Anthropic). If your emails 
 - Financial data under NDA
 - Customer PII under GDPR
 
-...use a local Claude deployment (Ollama with a capable model) or ensure your Anthropic data processing agreement covers your use case.
+...use a local LLM via Ollama (e.g., Llama, Mistral) or ensure your Anthropic data processing agreement covers your use case.
 
 ---
 
